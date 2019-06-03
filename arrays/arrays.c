@@ -108,10 +108,16 @@ void arr_append(Array *arr, char *element)
 
   // Resize the array if the number of elements is over capacity
   // or throw an error if resize isn't implemented yet.
-
+  if (arr->capacity <= arr->count)
+  {
+    fprintf(stderr, "IndexError: Index is out of range");
+    return;
+  }
   // Copy the element and add it to the end of the array
-
+  char *new_element = strdup(element);
+  arr->elements[arr->count] = new_element;
   // Increment count by 1
+  arr->count++;
 }
 
 /*****
